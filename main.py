@@ -37,6 +37,7 @@ WINDOW_SHORT = 180    # 3 hours, reacts faster when volatility spikes
 TRIM = 0.02           # trim 2% of returns from each tail (jump-robust)
 SIGMA_FLOOR = 0.0002  # never narrower than this (keeps output valid)
 SIGMA_CAP = 0.005     # never wider than this (avoids paying on quiet minutes)
+DEFAULT_HORIZON = 240  # minutes ahead, when a case omits horizon_minutes
 
 
 def price6(x):
@@ -89,7 +90,7 @@ def main():
         case_id = name[: -len(".in")]
         with open(os.path.join(INPUT_DIR, name), "r", encoding="utf-8") as fh:
             case = json.load(fh)
-        horizon = int(case.get("horizon_minutes", 240))
+        horizon = int(case.get("horizon_minutes", DEFAULT_HORIZON))
         forecasts = []
         for market in case.get("markets", []):
             forecasts.append({
