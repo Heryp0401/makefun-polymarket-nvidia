@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Polymarket NVIDIA CEO forecaster.
 
-Strategy (validated on the practice cases, loss ~0.307 vs house baseline 0.36):
+Strategy (validated on the practice cases, loss ~0.307 vs house baseline 0.36;
+house baseline is 0.363589 on the 6 practice cases, this entry ~0.307):
 - Median: persistence. Prediction-market prices are a martingale, so the
   current price is the best median forecast. Momentum drift was tested and
   HURTS (it adds loss), so drift is exactly zero.
